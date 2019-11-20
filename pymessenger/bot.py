@@ -368,3 +368,19 @@ class Bot:
             )
             result = response.json()
             return result
+
+    def send_quick_reply(self, recipient_id, message, quick_replies):
+            """send quick reply
+            https://developers.facebook.com/docs/messenger-platform/reference/send-api/quick-replies/
+            Input:
+                recipient_id: recipient id to send to
+                text: text of message to send
+                quick_replies: list of quick reply buttons to send
+            Output:
+                Response from API as <dict>
+            """
+            request_endpoint = '{0}/me/messages'.format(self.graph_url)
+            return self.send_message(recipient_id, {
+                "text": message,
+                'quick_replies': quick_replies
+            })
